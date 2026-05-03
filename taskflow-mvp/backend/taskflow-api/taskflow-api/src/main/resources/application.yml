@@ -1,0 +1,23 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: taskflow-api
+
+  datasource:
+    url: jdbc:postgresql://localhost:5434/taskflow?options=-c%20TimeZone=UTC&stringtype=unspecified
+    username: taskflow_user
+    password: taskflow_pass
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+jwt:
+  secret: "taskflow_secret_key_super_segura_para_desarrollo"
+  expiration: 86400000

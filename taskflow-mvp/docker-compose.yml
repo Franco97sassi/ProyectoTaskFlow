@@ -1,0 +1,18 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: taskflow-db
+    environment:
+      POSTGRES_DB: taskflow
+      POSTGRES_USER: taskflow_user
+      POSTGRES_PASSWORD: taskflow_pass
+      TZ: UTC
+      PGTZ: UTC
+    command: ["postgres", "-c", "timezone=UTC"]   # 👈 ESTE ES EL FIX CLAVE
+    ports:
+      - "5434:5432"
+    volumes:
+      - taskflow_data:/var/lib/postgresql/data
+
+volumes:
+  taskflow_data:
