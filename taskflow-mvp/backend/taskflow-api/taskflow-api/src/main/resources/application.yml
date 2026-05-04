@@ -2,11 +2,13 @@ server:
   port: 8081
 
 spring:
+  jackson:
+    time-zone: UTC
   application:
     name: taskflow-api
 
   datasource:
-    url: jdbc:postgresql://localhost:5434/taskflow?options=-c%20TimeZone=UTC&stringtype=unspecified
+    url: jdbc:postgresql://localhost:5434/taskflow?stringtype=unspecified
     username: taskflow_user
     password: taskflow_pass
 
@@ -17,7 +19,12 @@ spring:
     properties:
       hibernate:
         format_sql: true
-
+        jdbc:
+          time_zone: UTC
+  security:
+    user:
+      name: dev
+      password: dev
 jwt:
   secret: "taskflow_secret_key_super_segura_para_desarrollo"
   expiration: 86400000
