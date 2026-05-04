@@ -1,0 +1,12 @@
+<h2>{{ taskId ? 'Editar' : 'Nueva' }} tarea</h2>
+<form [formGroup]="form" (ngSubmit)="save()">
+  <input placeholder="Título" formControlName="title" />
+  <textarea placeholder="Descripción" formControlName="description"></textarea>
+  <select formControlName="status">
+    <option value="PENDING">PENDIENTE</option>
+    <option value="IN_PROGRESS">EN PROGRESO</option>
+    <option value="DONE">COMPLETADA</option>
+  </select>
+  <input type="date" formControlName="dueDate" />
+  <button type="submit" [disabled]="form.invalid">Guardar</button>
+</form>

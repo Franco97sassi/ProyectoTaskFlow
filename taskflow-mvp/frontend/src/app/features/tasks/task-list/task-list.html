@@ -1,0 +1,9 @@
+<h2>Tareas</h2>
+<a routerLink="/tasks/new">Nueva tarea</a>
+<ul>
+  <li *ngFor="let t of tasks">
+    <strong>{{ t.title }}</strong> - {{ t.status }}
+    <button (click)="edit(t)">Editar</button>
+    <button (click)="remove(t)">Eliminar</button>
+  </li>
+</ul>
