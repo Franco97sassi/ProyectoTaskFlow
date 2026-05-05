@@ -1,3 +1,4 @@
+package com.taskflow;
 import com.taskflow.auth.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

@@ -1,1 +1,42 @@
 git push origin main
+
+ 
+
+1-Levantar PostgreSQL
+cd taskflow-mvp
+
+
+docker compose up -d postgres
+
+
+Verificá que el contenedor quedó arriba:
+docker compose ps
+
+2-Probar conexión directa a PostgreSQL
+docker exec -it taskflow-db psql -U taskflow_user -d taskflow -c "select current_database(), current_user, current_setting('TimeZone');"
+
+Resultado esperado: base `taskflow`, usuario `taskflow_user` y timezone `UTC`.
+
+
+3-Compilar y ejecutar checks del backend
+
+cd taskflow-mvp/backend/taskflow-api/taskflow-api
+./mvnw test
+
+
+## 4. Levantar la API
+
+cd taskflow-mvp/backend/taskflow-api/taskflow-api
+./mvnw spring-boot:run
+
+La API debe iniciar en:
+
+http://localhost:8081
+
+
+##Usuario de ejemplo
+{
+ "name": "Franco ejemplo",
+"email": "franco.sassi.ej@gmail.com",
+"password": "test123"
+}
