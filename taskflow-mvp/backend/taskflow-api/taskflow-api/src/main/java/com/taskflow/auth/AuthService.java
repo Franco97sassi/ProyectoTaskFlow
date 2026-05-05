@@ -1,7 +1,7 @@
 package com.taskflow.auth;
 
-import com.taskflow.user.User;
-import com.taskflow.user.UserRepository;
+import com.taskflow.users.User;
+import com.taskflow.users.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
