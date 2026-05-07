@@ -1,49 +1,62 @@
-<h2>{{ taskId ? 'Editar' : 'Nueva' }} tarea</h2>
-<form [formGroup]="form" (ngSubmit)="save()">
-   <label>
-    Título
-    <input placeholder="Título" formControlName="title" />
-  </label>
+<section class="task-form-page">
+  <header class="form-header">
+    <div>
+      <p class="eyebrow">{{ taskId ? 'Edición' : 'Creación' }} de tarea</p>
+      <h2>{{ taskId ? 'Editar' : 'Nueva' }} tarea</h2>
+      <p>Completá los datos clave para planificar responsable, prioridad y fecha.</p>
+    </div>
+    <a routerLink="/tasks">Volver al listado</a>
+  </header>
 
-  <label>
-    Descripción
-    <textarea placeholder="Descripción" formControlName="description"></textarea>
-  </label>
+  <form class="task-form" [formGroup]="form" (ngSubmit)="save()">
+    <label class="full">
+      Título
+      <input placeholder="Ej: Preparar demo de TaskFlow" formControlName="title" />
+      <small *ngIf="form.controls.title.touched && form.controls.title.invalid">El título es obligatorio.</small>
+    </label>
 
-  <label>
-    Estado
-    <select formControlName="status">
-      <option value="PENDING">PENDIENTE</option>
-      <option value="IN_PROGRESS">EN PROGRESO</option>
-      <option value="DONE">COMPLETADA</option>
-    </select>
-  </label>
+    <label class="full">
+      Descripción
+      <textarea placeholder="Agregá contexto, entregables o pasos importantes" formControlName="description"></textarea>
+    </label>
 
-  <label>
-    Prioridad
-    <select formControlName="priority">
-      <option value="LOW">BAJA</option>
-      <option value="MEDIUM">MEDIA</option>
-      <option value="HIGH">ALTA</option>
-    </select>
-  </label>
+    <label>
+      Estado
+      <select formControlName="status">
+        <option *ngFor="let status of statuses" [value]="status.value">{{ status.label }}</option>
+      </select>
+    </label>
 
-  <label>
-    Fecha límite
-    <input type="date" formControlName="dueDate" />
-  </label>
+    <label>
+      Fecha límite
+      <input type="date" formControlName="dueDate" />
+    </label>
 
-  <label>
-    ID del proyecto
-    <input type="number" min="1" formControlName="projectId" />
-  </label>
+    <fieldset class="priority-options full">
+      <legend>Prioridad</legend>
+      <label *ngFor="let priority of priorities" [class.selected]="form.controls.priority.value === priority.value">
+        <input type="radio" formControlName="priority" [value]="priority.value" />
+        <span>{{ priority.label }}</span>
+        <small>{{ priority.hint }}</small>
+      </label>
+    </fieldset>
 
-  <label>
-    ID del usuario asignado
-    <input type="number" min="1" formControlName="assignedToUserId" />
-  </label>
+    <label>
+      ID del proyecto
+      <input type="number" min="1" formControlName="projectId" />
+    </label>
 
+    <label>
+      Usuario asignado
+      <select formControlName="assignedToUserId">
+        <option *ngFor="let user of users" [ngValue]="user.id">{{ user.name }} · {{ user.email }}</option>
+      </select>
+      <small *ngIf="!users.length">Si no se cargan usuarios, se usará el ID 1 por defecto.</small>
+    </label>
 
-
-  <button type="submit" [disabled]="form.invalid">Guardar</button>
-</form>
+    <div class="form-actions full">
+      <button type="submit" [disabled]="form.invalid">Guardar tarea</button>
+      <a routerLink="/tasks">Cancelar</a>
+    </div>
+  </form>
+</section>

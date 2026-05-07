@@ -1,9 +1,97 @@
-<h2>Tareas</h2>
-<a routerLink="/tasks/new">Nueva tarea</a>
-<ul>
-  <li *ngFor="let t of tasks">
-    <strong>{{ t.title }}</strong> - {{ t.status }}
-    <button (click)="edit(t)">Editar</button>
-    <button (click)="remove(t)">Eliminar</button>
-  </li>
-</ul>
+<section class="tasks-page">
+  <header class="page-header">
+    <div>
+      <p class="eyebrow">Etapa 5 · nivel pro</p>
+      <h2>Tareas</h2>
+      <p>Gestioná prioridades, fechas y responsables desde una vista más clara.</p>
+    </div>
+    <a class="primary-link" routerLink="/tasks/new">+ Nueva tarea</a>
+  </header>
+
+  <form class="filters-card" (ngSubmit)="applyFilters()">
+    <label>
+      Estado
+      <select name="status" [(ngModel)]="filters.status">
+        <option value="">Todos</option>
+        <option *ngFor="let status of statuses" [value]="status.value">{{ status.label }}</option>
+      </select>
+    </label>
+
+    <label>
+      Usuario
+      <select name="assignedToUserId" [(ngModel)]="filters.assignedToUserId">
+        <option value="">Todos</option>
+        <option *ngFor="let user of users" [ngValue]="user.id">{{ user.name }}</option>
+      </select>
+    </label>
+
+    <label>
+      Prioridad
+      <select name="priority" [(ngModel)]="filters.priority">
+        <option value="">Todas</option>
+        <option *ngFor="let priority of priorities" [value]="priority.value">{{ priority.label }}</option>
+      </select>
+    </label>
+
+    <label>
+      Desde
+      <input type="date" name="dueFrom" [(ngModel)]="filters.dueFrom" />
+    </label>
+
+    <label>
+      Hasta
+      <input type="date" name="dueTo" [(ngModel)]="filters.dueTo" />
+    </label>
+
+    <div class="filter-actions">
+      <button type="submit">Filtrar</button>
+      <button type="button" class="ghost" (click)="clearFilters()">Limpiar</button>
+    </div>
+  </form>
+
+  <div class="tasks-summary">
+    <strong>{{ tasks.length }}</strong> tareas encontradas
+  </div>
+
+  <div *ngIf="loading" class="empty-state">Cargando tareas...</div>
+
+  <div *ngIf="!loading && !tasks.length" class="empty-state">
+    No hay tareas para los filtros seleccionados.
+  </div>
+
+  <div *ngIf="!loading && tasks.length" class="task-grid">
+    <article *ngFor="let t of tasks" class="task-card" [class.overdue]="isOverdue(t)">
+      <div class="task-card__top">
+        <span class="status-pill" [class]="'status-pill status-' + t.status.toLowerCase().replace('_', '-')">
+          {{ statusLabel(t.status) }}
+        </span>
+        <span class="priority-pill" [class]="'priority-pill priority-' + (t.priority || 'MEDIUM').toLowerCase()">
+          {{ priorityLabel(t.priority) }}
+        </span>
+      </div>
+
+      <h3>{{ t.title }}</h3>
+      <p class="description">{{ t.description || 'Sin descripción' }}</p>
+
+      <dl>
+        <div>
+          <dt>Responsable</dt>
+          <dd>{{ t.assignedToName || ('Usuario #' + t.assignedToUserId) }}</dd>
+        </div>
+        <div>
+          <dt>Proyecto</dt>
+          <dd>{{ t.projectName || ('Proyecto #' + t.projectId) }}</dd>
+        </div>
+        <div>
+          <dt>Fecha límite</dt>
+          <dd [class.date-overdue]="isOverdue(t)">{{ t.dueDate || 'Sin fecha' }}</dd>
+        </div>
+      </dl>
+
+      <div class="card-actions">
+        <button type="button" (click)="edit(t)">Editar</button>
+        <button type="button" class="danger" (click)="remove(t)">Eliminar</button>
+      </div>
+    </article>
+  </div>
+</section>

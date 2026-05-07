@@ -9,7 +9,9 @@ export interface Task {
   priority?: TaskPriority;
   dueDate?: string;
   projectId?: number;
+  projectName?: string;
   assignedToUserId?: number;
+  assignedToName?: string;
   createdAt?: string;
 }
 
@@ -21,4 +23,12 @@ export interface TaskPayload {
   dueDate?: string;
   projectId: number;
   assignedToUserId: number;
+}
+
+export interface TaskFilters {
+  status?: TaskStatus | '';
+  assignedToUserId?: number | '';
+  priority?: TaskPriority | '';
+  dueFrom?: string;
+  dueTo?: string;
 }

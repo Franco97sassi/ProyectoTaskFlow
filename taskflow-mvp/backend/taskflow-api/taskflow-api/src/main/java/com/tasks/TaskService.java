@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
-
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.springframework.http.HttpStatus.NOT_FOUND;
@@ -21,8 +21,17 @@ public class TaskService {
     private final UserRepository userRepository;
 
     @Transactional(readOnly = true)
-    public List<TaskResponse> findAll() {
-        return taskRepository.findAll().stream().map(TaskResponse::from).toList();
+    public List<TaskResponse> findAll(
+            TaskStatus status,
+            Long assignedToUserId,
+            TaskPriority priority,
+            LocalDate dueFrom,
+            LocalDate dueTo
+    ) {
+        return taskRepository.findWithFilters(status, assignedToUserId, priority, dueFrom, dueTo)
+                .stream()
+                .map(TaskResponse::from)
+                .toList();
     }
     @Transactional(readOnly = true)
     public TaskResponse findById(Long id) {
@@ -72,7 +81,7 @@ public class TaskService {
         task.setTitle(request.title());
         task.setDescription(request.description());
         task.setStatus(request.status());
-        task.setPriority(request.priority());
+        task.setPriority(request.priority() != null ? request.priority() : TaskPriority.MEDIUM);
         task.setDueDate(request.dueDate());
         task.setProject(project);
         task.setAssignedTo(user);

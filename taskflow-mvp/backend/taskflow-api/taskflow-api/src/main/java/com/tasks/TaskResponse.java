@@ -11,7 +11,9 @@ public record TaskResponse(
         TaskPriority priority,
         LocalDate dueDate,
         Long projectId,
+        String projectName,
         Long assignedToUserId,
+        String assignedToName,
         LocalDateTime createdAt
 ) {
     public static TaskResponse from(Task task) {
@@ -23,7 +25,9 @@ public record TaskResponse(
                 task.getPriority(),
                 task.getDueDate(),
                 task.getProject() != null ? task.getProject().getId() : null,
+                task.getProject() != null ? task.getProject().getName() : null,
                 task.getAssignedTo() != null ? task.getAssignedTo().getId() : null,
+                task.getAssignedTo() != null ? task.getAssignedTo().getName() : null,
                 task.getCreatedAt()
         );
     }

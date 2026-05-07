@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.RequestParam;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -22,8 +23,14 @@ public class TaskController {
     private final TaskService taskService;
 
     @GetMapping
-    public List<TaskResponse> getTasks() {
-        return taskService.findAll();
+    public List<TaskResponse> getTasks(
+            @RequestParam(required = false) TaskStatus status,
+            @RequestParam(required = false) Long assignedToUserId,
+            @RequestParam(required = false) TaskPriority priority,
+            @RequestParam(required = false) LocalDate dueFrom,
+            @RequestParam(required = false) LocalDate dueTo
+    ) {
+        return taskService.findAll(status, assignedToUserId, priority, dueFrom, dueTo);
     }
 
     @GetMapping("/{id}")
