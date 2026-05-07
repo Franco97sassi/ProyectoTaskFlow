@@ -1,19 +1,24 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
+import { of } from 'rxjs';
+import { AuthService } from '../../../core/services/auth.service';
+import { LoginComponent } from './login.component';
 
-import { Login } from './login';
-
-describe('Login', () => {
-  let component: Login;
-  let fixture: ComponentFixture<Login>;
+describe('LoginComponent', () => {
+  let component: LoginComponent;
+  let fixture: ComponentFixture<LoginComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Login]
-    })
-    .compileComponents();
+     imports: [LoginComponent],
+      providers: [
+        provideRouter([]),
+        { provide: AuthService, useValue: { login: () => of({ token: 'token' }), saveToken: () => undefined } }
+      ]
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(Login);
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(LoginComponent);
+        component = fixture.componentInstance;
     fixture.detectChanges();
   });
 

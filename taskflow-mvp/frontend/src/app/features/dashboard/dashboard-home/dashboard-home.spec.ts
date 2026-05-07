@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
+import { TaskService } from '../../../core/services/task.service';
+import { DashboardHomeComponent } from './dashboard-home.component';
 
-import { DashboardHome } from './dashboard-home';
-
-describe('DashboardHome', () => {
-  let component: DashboardHome;
-  let fixture: ComponentFixture<DashboardHome>;
-
+describe('DashboardHomeComponent', () => {
+  let component: DashboardHomeComponent;
+  let fixture: ComponentFixture<DashboardHomeComponent>;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DashboardHome]
-    })
-    .compileComponents();
+       imports: [DashboardHomeComponent],
+      providers: [{ provide: TaskService, useValue: { getAll: () => of([]) } }]
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(DashboardHome);
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(DashboardHomeComponent);
+        component = fixture.componentInstance;
     fixture.detectChanges();
   });
 

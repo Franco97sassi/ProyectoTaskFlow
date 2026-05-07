@@ -1,13 +1,16 @@
+
 import { TestBed } from '@angular/core/testing';
-
-import { Tasks } from './tasks';
-
-describe('Tasks', () => {
-  let service: Tasks;
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { TaskService } from './task.service';
+describe('TaskService', () => {
+  let service: TaskService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(Tasks);
+   TestBed.configureTestingModule({
+      providers: [provideHttpClient(), provideHttpClientTesting()]
+    });
+    service = TestBed.inject(TaskService);
   });
 
   it('should be created', () => {

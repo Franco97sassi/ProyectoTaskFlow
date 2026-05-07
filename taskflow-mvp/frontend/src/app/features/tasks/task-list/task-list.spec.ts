@@ -1,19 +1,26 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
+import { of } from 'rxjs';
+import { TaskService } from '../../../core/services/task.service';
+import { TaskListComponent } from './task-list.component';
 
-import { TaskList } from './task-list';
+describe('TaskListComponent', () => {
+  let component: TaskListComponent;
+  let fixture: ComponentFixture<TaskListComponent>;
 
-describe('TaskList', () => {
-  let component: TaskList;
-  let fixture: ComponentFixture<TaskList>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TaskList]
-    })
-    .compileComponents();
+     imports: [TaskListComponent],
+      providers: [
+        provideRouter([]),
+        { provide: TaskService, useValue: { getAll: () => of([]), remove: () => of(undefined) } }
+      ]
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(TaskList);
-    component = fixture.componentInstance;
+
+    fixture = TestBed.createComponent(TaskListComponent);
+        component = fixture.componentInstance;
     fixture.detectChanges();
   });
 

@@ -1,12 +1,49 @@
 <h2>{{ taskId ? 'Editar' : 'Nueva' }} tarea</h2>
 <form [formGroup]="form" (ngSubmit)="save()">
-  <input placeholder="Título" formControlName="title" />
-  <textarea placeholder="Descripción" formControlName="description"></textarea>
-  <select formControlName="status">
-    <option value="PENDING">PENDIENTE</option>
-    <option value="IN_PROGRESS">EN PROGRESO</option>
-    <option value="DONE">COMPLETADA</option>
-  </select>
-  <input type="date" formControlName="dueDate" />
+   <label>
+    Título
+    <input placeholder="Título" formControlName="title" />
+  </label>
+
+  <label>
+    Descripción
+    <textarea placeholder="Descripción" formControlName="description"></textarea>
+  </label>
+
+  <label>
+    Estado
+    <select formControlName="status">
+      <option value="PENDING">PENDIENTE</option>
+      <option value="IN_PROGRESS">EN PROGRESO</option>
+      <option value="DONE">COMPLETADA</option>
+    </select>
+  </label>
+
+  <label>
+    Prioridad
+    <select formControlName="priority">
+      <option value="LOW">BAJA</option>
+      <option value="MEDIUM">MEDIA</option>
+      <option value="HIGH">ALTA</option>
+    </select>
+  </label>
+
+  <label>
+    Fecha límite
+    <input type="date" formControlName="dueDate" />
+  </label>
+
+  <label>
+    ID del proyecto
+    <input type="number" min="1" formControlName="projectId" />
+  </label>
+
+  <label>
+    ID del usuario asignado
+    <input type="number" min="1" formControlName="assignedToUserId" />
+  </label>
+
+
+
   <button type="submit" [disabled]="form.invalid">Guardar</button>
 </form>
