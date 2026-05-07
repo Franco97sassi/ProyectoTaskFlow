@@ -42,17 +42,22 @@
     </fieldset>
 
     <label>
-      ID del proyecto
-      <input type="number" min="1" formControlName="projectId" />
-    </label>
+       Proyecto
+      <select formControlName="projectId">
+        <option [ngValue]="0" disabled>Seleccioná un proyecto</option>
+        <option *ngFor="let project of projects" [ngValue]="project.id">
+          {{ project.name }}
+        </option>
+      </select>
+      <small *ngIf="!projects.length">Creá un proyecto desde la API antes de cargar tareas.</small>
+          </label>
 
     <label>
       Usuario asignado
       <select formControlName="assignedToUserId">
         <option *ngFor="let user of users" [ngValue]="user.id">{{ user.name }} · {{ user.email }}</option>
       </select>
-      <small *ngIf="!users.length">Si no se cargan usuarios, se usará el ID 1 por defecto.</small>
-    </label>
+      <small *ngIf="!users.length">Registrá usuarios antes de asignar tareas.</small>    </label>
 
     <div class="form-actions full">
       <button type="submit" [disabled]="form.invalid">Guardar tarea</button>

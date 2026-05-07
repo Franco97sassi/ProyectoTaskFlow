@@ -6,6 +6,8 @@ import { TaskService } from '../../../core/services/task.service';
  import { Task, TaskPayload, TaskPriority, TaskStatus } from '../../../core/models/task.model';
 import { User } from '../../../core/models/user.model';
 import { UserService } from '../../../core/services/user.service';
+import { ProjectService } from '../../../core/services/project.servics';
+import { Project } from '../../../core/models/project.model';
 
 @Component({
   selector: 'app-task-form',
@@ -20,10 +22,10 @@ export class TaskFormComponent implements OnInit {
   private router = inject(Router);
   private service = inject(TaskService);
   private userService = inject(UserService);
-
+  private projectService = inject(ProjectService);
   taskId?: number;
   users: User[] = [];
-
+  projects: Project[] = [];
   readonly statuses: { value: TaskStatus; label: string }[] = [
     { value: 'PENDING', label: 'Pendiente' },
     { value: 'IN_PROGRESS', label: 'En progreso' },
@@ -42,13 +44,12 @@ export class TaskFormComponent implements OnInit {
     status: ['PENDING' as TaskStatus, Validators.required],
     priority: ['MEDIUM' as TaskPriority, Validators.required],
     dueDate: [''],
-    projectId: [1, [Validators.required, Validators.min(1)]],
-    assignedToUserId: [1, [Validators.required, Validators.min(1)]]
-  });
+   projectId: [0, [Validators.required, Validators.min(1)]],
+    assignedToUserId: [0, [Validators.required, Validators.min(1)]]  });
 
   ngOnInit(): void {
     this.loadUsers();
-
+    this.loadProjects();
     const id = this.route.snapshot.paramMap.get('id');
     if (!id) return;
 
@@ -71,8 +72,23 @@ export class TaskFormComponent implements OnInit {
   }
 
   private loadUsers() {
-    this.userService.getAll().subscribe(users => this.users = users);
+this.userService.getAll().subscribe(users => {
+      this.users = users;
+      const selectedUserId = this.form.controls.assignedToUserId.value;
+      if (!this.taskId && selectedUserId < 1 && users.length) {
+        this.form.controls.assignedToUserId.setValue(users[0].id);
+      }
+    });
   }
+
+  private loadProjects() {
+    this.projectService.getAll().subscribe(projects => {
+      this.projects = projects;
+      const selectedProjectId = this.form.controls.projectId.value;
+      if (!this.taskId && selectedProjectId < 1 && projects.length) {
+        this.form.controls.projectId.setValue(projects[0].id);
+      }
+    });  }
 
   private patchForm(task: Task) {
     this.form.patchValue({
@@ -81,8 +97,9 @@ export class TaskFormComponent implements OnInit {
       status: task.status,
       priority: task.priority ?? 'MEDIUM',
       dueDate: task.dueDate ?? '',
-      projectId: task.projectId ?? 1,
-      assignedToUserId: task.assignedToUserId ?? 1
+       projectId: task.projectId ?? 0,
+      assignedToUserId: task.assignedToUserId ?? 0
+
     });
   }
 

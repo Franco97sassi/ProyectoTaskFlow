@@ -1,5 +1,42 @@
-<h2>Dashboard</h2>
-<div>Total: {{ total }}</div>
-<div>Pendientes: {{ pending }}</div>
-<div>En progreso: {{ inProgress }}</div>
-<div>Completadas: {{ done }}</div>
+<section class="dashboard-page">
+  <header class="dashboard-hero">
+    <div>
+      <p class="eyebrow">TaskFlow · Dashboard</p>
+      <h1>Panel de control</h1>
+      <p>Seguimiento rápido de avance, prioridades y tareas vencidas del proyecto.</p>
+    </div>
+    <div class="progress-card" aria-label="Porcentaje de avance">
+      <span>{{ completionRate }}%</span>
+      <small>completado</small>
+    </div>
+  </header>
+
+  <div *ngIf="loading" class="empty-state">Cargando métricas...</div>
+
+  <ng-container *ngIf="!loading">
+    <section class="stats-grid" aria-label="Resumen de tareas">
+      <article *ngFor="let card of cards" class="stat-card" [class]="'stat-card stat-card--' + card.tone">
+        <div class="stat-card__icon">●</div>
+        <div>
+          <p>{{ card.label }}</p>
+          <strong>{{ card.value }}</strong>
+          <span>{{ card.detail }}</span>
+        </div>
+      </article>
+    </section>
+
+    <section class="insights-grid">
+      <article class="insight-card warning">
+        <p>Prioridad alta</p>
+        <strong>{{ highPriority }}</strong>
+        <span>Tareas que necesitan atención inmediata.</span>
+      </article>
+
+      <article class="insight-card danger">
+        <p>Vencidas</p>
+        <strong>{{ overdue }}</strong>
+        <span>Tareas no completadas con fecha límite pasada.</span>
+      </article>
+    </section>
+  </ng-container>
+</section>
