@@ -56,8 +56,6 @@ public class ProjectService {
         User owner = userRepository.findById(request.ownerId())
                 .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Owner user not found"));
 
-        return ProjectResponse.from(saved);
-
         project.setName(request.name());
         project.setDescription(request.description());
         project.setOwner(owner);
