@@ -9,6 +9,7 @@
   </header>
 
   <form class="task-form" [formGroup]="form" (ngSubmit)="save()">
+    <p *ngIf="errorMessage" class="form-error full" role="alert">{{ errorMessage }}</p>
     <label class="full">
       Título
       <input placeholder="Ej: Preparar demo de TaskFlow" formControlName="title" />
@@ -60,7 +61,7 @@
       <small *ngIf="!users.length">Registrá usuarios antes de asignar tareas.</small>    </label>
 
     <div class="form-actions full">
-      <button type="submit" [disabled]="form.invalid">Guardar tarea</button>
+      <button type="submit" [disabled]="submitting">{{ submitting ? 'Guardando…' : 'Guardar tarea' }}</button>
       <a routerLink="/tasks">Cancelar</a>
     </div>
   </form>

@@ -1,1 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+
+:root { font-family: 'DM Sans', system-ui, sans-serif; color: #172033; background: #f5f7fb; font-synthesis: none; }
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; }
+button, input, select, textarea { font: inherit; }
+button, a { transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease; }
+button:hover:not(:disabled), a:hover { transform: translateY(-1px); }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid rgba(79, 70, 229, .22); outline-offset: 2px; }

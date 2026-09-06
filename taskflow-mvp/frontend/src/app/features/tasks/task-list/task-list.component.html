@@ -55,7 +55,11 @@
 
   <div *ngIf="loading" class="empty-state">Cargando tareas...</div>
 
-  <div *ngIf="!loading && !tasks.length" class="empty-state">
+  <div *ngIf="errorMessage" class="empty-state error-state" role="alert">
+    {{ errorMessage }} <button type="button" class="ghost" (click)="load()">Reintentar</button>
+  </div>
+
+  <div *ngIf="!loading && !errorMessage && !tasks.length" class="empty-state">
     No hay tareas para los filtros seleccionados.
   </div>
 

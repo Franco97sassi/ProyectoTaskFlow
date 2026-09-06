@@ -1,0 +1,54 @@
+<svg width="1280" height="760" viewBox="0 0 1280 760" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">TaskFlow dashboard screenshot</title>
+  <desc id="desc">Mock screenshot versionado del dashboard con cards de métricas.</desc>
+  <rect width="1280" height="760" fill="#F8FAFC"/>
+  <rect x="48" y="40" width="250" height="680" rx="30" fill="#0F172A"/>
+  <text x="84" y="98" fill="#FFFFFF" font-family="Inter, Arial" font-size="34" font-weight="800">TaskFlow</text>
+  <rect x="84" y="150" width="178" height="46" rx="16" fill="#2563EB"/>
+  <text x="108" y="180" fill="#FFFFFF" font-family="Inter, Arial" font-size="16" font-weight="700">Dashboard</text>
+  <text x="108" y="244" fill="#CBD5E1" font-family="Inter, Arial" font-size="16" font-weight="700">Tareas</text>
+  <rect x="334" y="40" width="898" height="210" rx="30" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <text x="382" y="98" fill="#2563EB" font-family="Inter, Arial" font-size="14" font-weight="900" letter-spacing="2">TASKFLOW · DASHBOARD</text>
+  <text x="382" y="154" fill="#0F172A" font-family="Inter, Arial" font-size="52" font-weight="900">Panel de control</text>
+  <text x="382" y="199" fill="#64748B" font-family="Inter, Arial" font-size="21">Seguimiento rápido de avance, prioridades y tareas vencidas.</text>
+  <circle cx="1122" cy="145" r="68" fill="url(#grad)"/>
+  <text x="1080" y="142" fill="#FFFFFF" font-family="Inter, Arial" font-size="34" font-weight="900">62%</text>
+  <text x="1084" y="172" fill="#DBEAFE" font-family="Inter, Arial" font-size="15" font-weight="800">completado</text>
+  <g>
+    <rect x="334" y="286" width="210" height="150" rx="24" fill="#FFFFFF" stroke="#E5E7EB"/>
+    <circle cx="386" cy="340" r="22" fill="#DBEAFE"/>
+    <text x="425" y="330" fill="#64748B" font-family="Inter, Arial" font-size="14" font-weight="900">TOTAL</text>
+    <text x="425" y="382" fill="#0F172A" font-family="Inter, Arial" font-size="46" font-weight="900">24</text>
+    <text x="425" y="412" fill="#64748B" font-family="Inter, Arial" font-size="16">Tareas registradas</text>
+  </g>
+  <g>
+    <rect x="566" y="286" width="210" height="150" rx="24" fill="#FFFFFF" stroke="#E5E7EB"/>
+    <circle cx="618" cy="340" r="22" fill="#FEF3C7"/>
+    <text x="657" y="330" fill="#64748B" font-family="Inter, Arial" font-size="14" font-weight="900">PENDIENTES</text>
+    <text x="657" y="382" fill="#0F172A" font-family="Inter, Arial" font-size="46" font-weight="900">7</text>
+    <text x="657" y="412" fill="#64748B" font-family="Inter, Arial" font-size="16">Listas para iniciar</text>
+  </g>
+  <g>
+    <rect x="798" y="286" width="210" height="150" rx="24" fill="#FFFFFF" stroke="#E5E7EB"/>
+    <circle cx="850" cy="340" r="22" fill="#EDE9FE"/>
+    <text x="889" y="330" fill="#64748B" font-family="Inter, Arial" font-size="14" font-weight="900">EN PROGRESO</text>
+    <text x="889" y="382" fill="#0F172A" font-family="Inter, Arial" font-size="46" font-weight="900">8</text>
+    <text x="889" y="412" fill="#64748B" font-family="Inter, Arial" font-size="16">Trabajo activo</text>
+  </g>
+  <g>
+    <rect x="1030" y="286" width="202" height="150" rx="24" fill="#FFFFFF" stroke="#E5E7EB"/>
+    <circle cx="1082" cy="340" r="22" fill="#DCFCE7"/>
+    <text x="1120" y="330" fill="#64748B" font-family="Inter, Arial" font-size="14" font-weight="900">HECHAS</text>
+    <text x="1120" y="382" fill="#0F172A" font-family="Inter, Arial" font-size="46" font-weight="900">9</text>
+    <text x="1120" y="412" fill="#64748B" font-family="Inter, Arial" font-size="16">Cerradas</text>
+  </g>
+  <rect x="334" y="474" width="434" height="150" rx="24" fill="#FFFBEB" stroke="#FDE68A"/>
+  <text x="382" y="530" fill="#64748B" font-family="Inter, Arial" font-size="14" font-weight="900">PRIORIDAD ALTA</text>
+  <text x="382" y="584" fill="#0F172A" font-family="Inter, Arial" font-size="48" font-weight="900">3</text>
+  <text x="382" y="614" fill="#64748B" font-family="Inter, Arial" font-size="17">Tareas que necesitan atención inmediata.</text>
+  <rect x="798" y="474" width="434" height="150" rx="24" fill="#FEF2F2" stroke="#FECACA"/>
+  <text x="846" y="530" fill="#64748B" font-family="Inter, Arial" font-size="14" font-weight="900">VENCIDAS</text>
+  <text x="846" y="584" fill="#0F172A" font-family="Inter, Arial" font-size="48" font-weight="900">2</text>
+  <text x="846" y="614" fill="#64748B" font-family="Inter, Arial" font-size="17">Tareas no completadas con fecha pasada.</text>
+  <defs><linearGradient id="grad" x1="1054" y1="77" x2="1190" y2="213"><stop stop-color="#2563EB"/><stop offset="1" stop-color="#7C3AED"/></linearGradient></defs>
+</svg>
