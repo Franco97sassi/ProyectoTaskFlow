@@ -22,6 +22,7 @@ export class TaskListComponent implements OnInit {
   tasks: Task[] = [];
   users: User[] = [];
   loading = false;
+  errorMessage = '';
   filters: TaskFilters = {
     status: '',
     assignedToUserId: '',
@@ -49,6 +50,7 @@ export class TaskListComponent implements OnInit {
 
   load() {
     this.loading = true;
+    this.errorMessage = '';
     this.service.getAll(this.filters).subscribe({
       next: tasks => {
         this.tasks = tasks;
@@ -57,6 +59,7 @@ export class TaskListComponent implements OnInit {
       error: () => {
         this.tasks = [];
         this.loading = false;
+        this.errorMessage = 'No pudimos cargar las tareas. Intentá nuevamente.';
       }
     });
   }
@@ -100,6 +103,10 @@ export class TaskListComponent implements OnInit {
 
   remove(task: Task) {
     if (!task.id) return;
-    this.service.remove(task.id).subscribe(() => this.load());
+    if (!window.confirm(`¿Eliminar “${task.title}”? Esta acción no se puede deshacer.`)) return;
+    this.service.remove(task.id).subscribe({
+      next: () => this.load(),
+      error: () => this.errorMessage = 'No pudimos eliminar la tarea.'
+    });
   }
 }

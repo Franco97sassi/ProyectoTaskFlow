@@ -3,10 +3,10 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { TaskService } from '../../../core/services/task.service';
- import { Task, TaskPayload, TaskPriority, TaskStatus } from '../../../core/models/task.model';
+import { Task, TaskPayload, TaskPriority, TaskStatus } from '../../../core/models/task.model';
 import { User } from '../../../core/models/user.model';
 import { UserService } from '../../../core/services/user.service';
-import { ProjectService } from '../../../core/services/project.servics';
+import { ProjectService } from '../../../core/services/project.service';
 import { Project } from '../../../core/models/project.model';
 
 @Component({
@@ -26,6 +26,8 @@ export class TaskFormComponent implements OnInit {
   taskId?: number;
   users: User[] = [];
   projects: Project[] = [];
+  submitting = false;
+  errorMessage = '';
   readonly statuses: { value: TaskStatus; label: string }[] = [
     { value: 'PENDING', label: 'Pendiente' },
     { value: 'IN_PROGRESS', label: 'En progreso' },
@@ -63,12 +65,20 @@ export class TaskFormComponent implements OnInit {
       return;
     }
 
+    this.submitting = true;
+    this.errorMessage = '';
     const payload = this.toPayload();
     const req = this.taskId
       ? this.service.update(this.taskId, payload)
       : this.service.create(payload);
 
-    req.subscribe(() => this.router.navigateByUrl('/tasks'));
+    req.subscribe({
+      next: () => this.router.navigateByUrl('/tasks'),
+      error: () => {
+        this.submitting = false;
+        this.errorMessage = 'No pudimos guardar la tarea. Revisá los datos e intentá nuevamente.';
+      }
+    });
   }
 
   private loadUsers() {

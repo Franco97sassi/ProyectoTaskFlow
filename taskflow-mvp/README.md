@@ -149,3 +149,41 @@ Filtros soportados en `GET /api/tasks`:
 - ✅ Etapa 4: frontend Angular con login, dashboard y gestión de tareas.
 - ✅ Etapa 5: filtros, prioridades, fechas y UI mejorada.
 - ✅ Etapa 6: README, screenshots y explicación técnica para portfolio.
+
+## Decisiones de arquitectura
+
+- **API por capas:** los controladores se limitan al contrato HTTP; los servicios concentran reglas de negocio y transacciones; los repositorios aíslan persistencia.
+- **DTOs en los límites:** la API no expone contraseñas ni serializa directamente el grafo de entidades JPA.
+- **Seguridad stateless:** cada request protegido valida un JWT, sin sesión de servidor. La clave, expiración, conexión y origen CORS se configuran con variables de entorno.
+- **Filtros componibles:** el listado usa JPA Specifications para combinar filtros opcionales sin multiplicar consultas específicas.
+- **Frontend por features:** rutas lazy, modelos tipados, servicios HTTP, interceptor y guard separan infraestructura de las pantallas.
+- **Errores predecibles:** las validaciones se devuelven con un contrato JSON común (`timestamp`, `status`, `message`, `path` y `fieldErrors`).
+
+## Variables de entorno del backend
+
+| Variable | Uso | Valor local por defecto |
+| --- | --- | --- |
+| `DB_URL` | JDBC URL de PostgreSQL | `jdbc:postgresql://localhost:5434/taskflow` |
+| `DB_USERNAME` | Usuario de base | `taskflow_user` |
+| `DB_PASSWORD` | Contraseña de base | `taskflow_pass` |
+| `JWT_SECRET` | Firma HMAC del token | Solo desarrollo; reemplazar en producción |
+| `JWT_EXPIRATION` | Vida del token en ms | `86400000` |
+| `CORS_ALLOWED_ORIGIN` | Origen permitido | `http://localhost:4200` |
+
+> Para un despliegue real, `JWT_SECRET` y las credenciales deben provenir de un secret manager y nunca del repositorio.
+
+## Guion breve para la entrevista
+
+1. **Problema:** equipos pequeños necesitan visualizar carga, responsables y vencimientos sin una herramienta pesada.
+2. **Recorrido:** login → métricas → filtros → alta/edición de una tarea → confirmación de borrado.
+3. **Profundidad técnica:** explicar JWT stateless, DTOs, transacciones, Specifications, lazy routes e interceptor.
+4. **Trade-offs:** este MVP usa `ddl-auto=update`; el siguiente paso productivo sería Flyway, refresh tokens, paginación y autorización por ownership/rol.
+5. **Calidad:** mostrar las suites automatizadas y el build de producción antes de la demo.
+
+## Checklist antes de presentar
+
+- Levantar PostgreSQL, API y frontend desde una instalación limpia.
+- Crear datos de demo coherentes (un proyecto, tres usuarios y tareas en distintos estados).
+- Cambiar `JWT_SECRET` y verificar login/logout, filtros, formularios y responsive.
+- Ejecutar `mvn test`, `npm test -- --watch=false --browsers=ChromeHeadless` y `npm run build`.
+- Preparar una explicación de 3 minutos y una respuesta para cada trade-off documentado.

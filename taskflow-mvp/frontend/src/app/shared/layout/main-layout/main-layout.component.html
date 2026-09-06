@@ -1,10 +1,24 @@
-<header>
-  <h1>TaskFlow</h1>
-  <nav>
-    <a routerLink="/dashboard">Dashboard</a> |
-    <a routerLink="/tasks">Tareas</a>
-  </nav>
-</header>
-<main>
-  <router-outlet></router-outlet>
-</main>
+<div class="app-shell">
+  <aside class="sidebar">
+    <a class="brand" routerLink="/dashboard" aria-label="Ir al inicio de TaskFlow">
+      <span class="brand__mark">TF</span>
+      <span><strong>TaskFlow</strong><small>Workspace</small></span>
+    </a>
+    <nav aria-label="Navegación principal">
+      <a routerLink="/dashboard" routerLinkActive="active"><span>▦</span> Dashboard</a>
+      <a routerLink="/tasks" routerLinkActive="active"><span>✓</span> Tareas</a>
+      <a routerLink="/tasks/new" routerLinkActive="active"><span>＋</span> Nueva tarea</a>
+    </nav>
+    <div class="sidebar__footer">
+      <p>Portfolio project</p>
+      <small>Angular + Spring Boot</small>
+    </div>
+  </aside>
+  <div class="workspace">
+    <header class="topbar">
+      <div><p>Tu espacio de trabajo</p><strong>Organizá. Priorizá. Entregá.</strong></div>
+      <a routerLink="/login" (click)="logout()">Cerrar sesión</a>
+    </header>
+    <main><router-outlet /></main>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<svg width="1280" height="760" viewBox="0 0 1280 760" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">TaskFlow task form screenshot</title>
+  <desc id="desc">Mock screenshot versionado del formulario de tareas con selector de proyecto.</desc>
+  <rect width="1280" height="760" fill="#F8FAFC"/>
+  <rect x="70" y="52" width="1140" height="142" rx="28" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <text x="112" y="106" fill="#2563EB" font-family="Inter, Arial" font-size="14" font-weight="900" letter-spacing="2">CREACIÓN DE TAREA</text>
+  <text x="112" y="155" fill="#0F172A" font-family="Inter, Arial" font-size="42" font-weight="900">Nueva tarea</text>
+  <text x="420" y="155" fill="#64748B" font-family="Inter, Arial" font-size="21">Responsable, prioridad, fecha y proyecto sin escribir IDs manuales.</text>
+  <rect x="70" y="230" width="1140" height="470" rx="28" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <text x="112" y="286" fill="#334155" font-family="Inter, Arial" font-size="16" font-weight="900">Título</text>
+  <rect x="112" y="306" width="1018" height="54" rx="14" fill="#F8FAFC" stroke="#CBD5E1"/>
+  <text x="136" y="340" fill="#64748B" font-family="Inter, Arial" font-size="17">Preparar demo de TaskFlow</text>
+  <text x="112" y="410" fill="#334155" font-family="Inter, Arial" font-size="16" font-weight="900">Estado</text>
+  <rect x="112" y="430" width="300" height="56" rx="14" fill="#F8FAFC" stroke="#CBD5E1"/>
+  <text x="136" y="464" fill="#0F172A" font-family="Inter, Arial" font-size="17">En progreso</text>
+  <text x="454" y="410" fill="#334155" font-family="Inter, Arial" font-size="16" font-weight="900">Proyecto</text>
+  <rect x="454" y="430" width="300" height="56" rx="14" fill="#EFF6FF" stroke="#2563EB"/>
+  <text x="478" y="464" fill="#0F172A" font-family="Inter, Arial" font-size="17">Portfolio MVP</text>
+  <text x="796" y="410" fill="#334155" font-family="Inter, Arial" font-size="16" font-weight="900">Usuario asignado</text>
+  <rect x="796" y="430" width="334" height="56" rx="14" fill="#F8FAFC" stroke="#CBD5E1"/>
+  <text x="820" y="464" fill="#0F172A" font-family="Inter, Arial" font-size="17">Sofía Dev · sofia@mail.com</text>
+  <text x="112" y="548" fill="#334155" font-family="Inter, Arial" font-size="16" font-weight="900">Prioridad</text>
+  <rect x="112" y="572" width="280" height="76" rx="18" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <text x="142" y="606" fill="#0F172A" font-family="Inter, Arial" font-size="18" font-weight="800">Baja</text>
+  <text x="142" y="632" fill="#64748B" font-family="Inter, Arial" font-size="15">Puede esperar</text>
+  <rect x="420" y="572" width="280" height="76" rx="18" fill="#EFF6FF" stroke="#2563EB"/>
+  <text x="450" y="606" fill="#0F172A" font-family="Inter, Arial" font-size="18" font-weight="800">Media</text>
+  <text x="450" y="632" fill="#64748B" font-family="Inter, Arial" font-size="15">Importancia normal</text>
+  <rect x="728" y="572" width="280" height="76" rx="18" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <text x="758" y="606" fill="#0F172A" font-family="Inter, Arial" font-size="18" font-weight="800">Alta</text>
+  <text x="758" y="632" fill="#64748B" font-family="Inter, Arial" font-size="15">Atención inmediata</text>
+</svg>
