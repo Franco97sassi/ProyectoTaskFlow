@@ -1,13 +1,45 @@
-.app-shell { min-height: 100vh; display: grid; grid-template-columns: 250px 1fr; }
-.sidebar { position: sticky; top: 0; height: 100vh; padding: 1.5rem; background: #10162a; color: #fff; display: flex; flex-direction: column; }
-.brand { display: flex; align-items: center; gap: .75rem; color: #fff; text-decoration: none; font-size: 1.05rem; }
-.brand__mark { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 13px; background: linear-gradient(135deg,#6366f1,#8b5cf6); font-weight: 800; box-shadow: 0 8px 24px #6366f155; }
-.brand strong,.brand small { display:block; }.brand small { color:#8993aa;font-size:.72rem;margin-top:.1rem; }
-nav { display:grid; gap:.45rem; margin-top:3rem; }
-nav a { display:flex; gap:.75rem; align-items:center; padding:.8rem .9rem; border-radius:12px; color:#aab2c6; text-decoration:none; font-weight:650; }
-nav a span { width:1.25rem; text-align:center; } nav a:hover, nav a.active { background:#ffffff12;color:#fff;transform:none; } nav a.active { box-shadow:inset 3px 0 #818cf8; }
-.sidebar__footer { margin-top:auto; padding:1rem; border:1px solid #ffffff14;border-radius:14px;background:#ffffff08; }.sidebar__footer p{margin:0;font-weight:700}.sidebar__footer small{color:#8993aa}
-.workspace { min-width:0; }.topbar { height:78px; padding:0 2rem; background:#ffffffcc;backdrop-filter:blur(12px);border-bottom:1px solid #e8eaf1;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:5;}
-.topbar p { margin:0;color:#7b8498;font-size:.78rem; }.topbar strong{font-size:.94rem}.topbar a{color:#4f46e5;text-decoration:none;font-weight:700;font-size:.86rem;padding:.65rem .85rem;border-radius:10px;background:#eef2ff;}
-main { padding:2rem;max-width:1440px;margin:auto; }
-@media(max-width:760px){.app-shell{grid-template-columns:1fr}.sidebar{height:auto;position:static;padding:1rem}.brand small,.sidebar__footer{display:none}nav{margin-top:1rem;display:flex;overflow:auto}nav a{white-space:nowrap}.topbar{padding:0 1rem}.topbar div{display:none}main{padding:1rem}}
+.app-shell {
+  --sidebar: #18181b;
+  background: #f7f7f8;
+  display: grid;
+  grid-template-columns: 232px minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.sidebar {
+  background: var(--sidebar);
+  border-right: 1px solid #27272a;
+  color: #fafafa;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 1rem .75rem;
+  position: sticky;
+  top: 0;
+}
+
+.brand { align-items: center; color: #fafafa; display: flex; gap: .65rem; padding: .35rem .45rem 1rem; text-decoration: none; }
+.brand__mark { background: linear-gradient(145deg, #7c3aed, #5b5bd6 55%, #ec4899); border-radius: 8px; box-shadow: 0 5px 18px #7c3aed55; display: block; height: 30px; overflow: hidden; position: relative; width: 30px; }
+.brand__mark i { background: #fff; border-radius: 99px; height: 3px; left: 7px; position: absolute; top: 10px; transform: rotate(-28deg); width: 16px; }
+.brand__mark i:last-child { top: 17px; width: 11px; }
+.brand strong, .brand small { display: block; }.brand strong { font-size: .86rem; }.brand small { color: #71717a; font-size: .62rem; margin-top: .08rem; }
+.workspace-switcher { color: #71717a; margin-left: auto; }
+.nav-label { color: #52525b; font-size: .6rem; font-weight: 750; letter-spacing: .12em; margin: 1.4rem .65rem .55rem; text-transform: uppercase; }
+nav { display: grid; gap: .18rem; }
+nav a { align-items: center; border: 1px solid transparent; border-radius: 6px; color: #a1a1aa; display: flex; font-size: .78rem; font-weight: 550; gap: .65rem; padding: .54rem .62rem; text-decoration: none; }
+nav a svg { fill: none; height: 15px; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.7; width: 15px; }
+nav a:first-of-type svg { fill: currentColor; stroke: none; }
+nav a:hover { background: #27272a; color: #e4e4e7; transform: none; }
+nav a.active { background: #2a2930; border-color: #3f3f46; color: #fff; box-shadow: inset 2px 0 #8b5cf6; }
+.sidebar__footer { align-items: center; border-top: 1px solid #27272a; display: flex; gap: .65rem; margin-top: auto; padding: 1rem .5rem .25rem; }
+.footer-icon { align-items: center; border: 1px solid #3f3f46; border-radius: 7px; color: #a1a1aa; display: flex; font-size: .7rem; height: 28px; justify-content: center; width: 28px; }
+.sidebar__footer p { color: #d4d4d8; font-size: .68rem; font-weight: 650; margin: 0; }.sidebar__footer small { color: #71717a; font-size: .58rem; }
+.workspace { min-width: 0; }
+.topbar { align-items: center; background: #ffffffd9; backdrop-filter: blur(14px); border-bottom: 1px solid #e7e7ea; display: flex; height: 56px; justify-content: space-between; padding: 0 1.75rem; position: sticky; top: 0; z-index: 5; }
+.breadcrumb { align-items: center; display: flex; font-size: .72rem; gap: .5rem; }.breadcrumb span,.breadcrumb b{color:#a1a1aa}.breadcrumb b{font-weight:400}.breadcrumb strong{color:#3f3f46;font-weight:600}
+.topbar-actions { align-items: center; display: flex; gap: .55rem; }
+.quick-search { align-items: center; background: #fafafa; border: 1px solid #e4e4e7; border-radius: 6px; color: #71717a; display: flex; font-size: .68rem; gap: .4rem; padding: .32rem .4rem; text-decoration: none; }.quick-search svg,.logout svg{fill:none;height:14px;stroke:currentColor;stroke-linecap:round;stroke-width:1.7;width:14px}.quick-search kbd{background:#fff;border:1px solid #e4e4e7;border-radius:4px;color:#a1a1aa;font:inherit;padding:.08rem .28rem}
+.avatar { align-items: center; background: linear-gradient(135deg,#fef3c7,#fecdd3); border: 1px solid #f9a8d4; border-radius: 50%; color: #9d174d; display: flex; font-size: .6rem; font-weight: 800; height: 29px; justify-content: center; width: 29px; }
+.logout { color: #a1a1aa; display: flex; padding: .3rem; }.logout:hover{color:#ef4444}
+main { margin: auto; max-width: 1320px; padding: 2rem 2.25rem 3rem; width: 100%; }
+@media(max-width:760px){.app-shell{grid-template-columns:1fr}.sidebar{height:auto;padding:.7rem;position:static}.brand small,.sidebar__footer,.nav-label,.workspace-switcher{display:none}nav{display:flex;overflow:auto}nav a{white-space:nowrap}.topbar{padding:0 1rem}.quick-search span,.quick-search kbd{display:none}main{padding:1.25rem}}
